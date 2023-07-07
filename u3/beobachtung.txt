@@ -1,0 +1,66 @@
+
+e)
+Ausgabe:
+L: 1 binomA: 0.0 binomB 0.0
+L: 2 binomA: 0.0 binomB 0.0
+L: 3 binomA: 0.0 binomB 0.0
+L: 4 binomA: 1.0000000000000002e-10 binomB 0.0
+L: 5 binomA: 2.5e-11 binomB 0.0
+L: 6 binomA: 2.5e-11 binomB 1e-09
+L: 7 binomA: 2.5e-11 binomB 0.0
+L: 8 binomA: 2.5e-11 binomB 3e-11
+L: 9 binomA: 2.5e-11 binomB 2.5e-11
+L: 10 binomA: 2.5e-11 binomB 2.499999998e-11
+L: 11 binomA: 2.5e-11 binomB 2.4999999981e-11
+L: 12 binomA: 2.5e-11 binomB 2.49999999814e-11
+L: 13 binomA: 2.5000000000020002e-11 binomB 2.4999999981420002e-11
+L: 14 binomA: 2.5000000000015e-11 binomB 2.4999999981420002e-11
+L: 15 binomA: 2.50000000000153e-11 binomB 2.4999999981420103e-11
+L: 16 binomA: 2.500000000001531e-11 binomB 2.499999998142009e-11
+L: 17 binomA: 2.4999999999980617e-11 binomB 2.4999999981420093e-11
+L: 18 binomA: 2.4999999999980617e-11 binomB 2.4999999981420093e-11
+L: 19 binomA: 2.4999999999980617e-11 binomB 2.4999999981420093e-11
+
+Die BinomA nähert sich schon bei L=5 dem richtigen Ergebniss an. 
+BinomB erst bei L=9, also vermuten wir, dass BinomA die bessere Formel ist, sie benötigt weniger L zur darstellung der Ergebnisses.
+Wir vermuten, dass die BinomB Formel ungenauer ist, da die Potenzen von a und b zuerst errechnet werden und diese Potenzen eine hohes L benötigen.
+
+f)
+1. Für print(0.1) erwarten wir 0.1, da nur der eingegebene Wert auf der Console ausgegeben werden muss.
+2. Für print(0.1*10+0.1*(-9)) erwarten wir 0.1, da
+                1  + -0.9    = 1.0
+3. Für print(add(mult(0.1,10,rd),mult(0.1,-9,rd),rd)) erwarten wir 0.1
+    Man sollte auch meinen, dass runden (.,5) nichts bringt. Da die Zahlen 1+-0,9 = 0.1 alle nur 'länge' 1 benötigen.
+
+Ausgabe:
+>>> print(0.1)
+0.1
+>>> print(0.1*10+0.1*(-9))
+0.09999999999999998
+>>> print(0.09999999999999998123)
+0.09999999999999998
+>>> L=5
+>>> print(add(mult(0.1,10,runden),mult(0.1,-9,runden),runden))
+0.1
+>>> L=16
+>>> print(add(mult(0.1,10,runden),mult(0.1,-9,runden),runden))
+0.09999999999999998
+
+2. Zeigt unerwartet die Zahl 0.09999999999999998 an. Das liegt daran, dass Computer viele für unser Zehner Zahlensystem endliche Brüche, nicht endlich darstellen können, da sie im Binärsystem arbeiten. 
+    Daher ist auch die Umwandlung von ins Zehnersystem vom Computer nur eine Annäherrung.  
+    Außerdem interessant dabei ist, dass die Zahl in Gleitkomma darstellung die 'länge' 16 hat.
+    Also vermuten wir, dass python3 mit L=16 rechnet. 
+    Wenn man versucht eine Gleitkommazahl mit mehr als 16 Zeichen zu printen wird automatisch auf die 16 Stelle gerundet, was unsere vermutung bestätigt.
+
+
+3. Zeigt wie erwartet 0.1
+    Das liegt daran, dass 3. eigentlich genau so rechnet wie 2 (Computer daher Binär), aber am Ende das Ergebnis auf die 5te Stelle aufrundet. Bei rd(.,16) ist das Ergebnis bei 2. und 3. daher gleich.
+
+    Siehe am folgenden Bsp.
+
+    L=5
+    (add(mult(0.1,10,runden),mult(0.1,-9,runden),runden))
+    add (      1.0          ,      -0.9         ,rd)
+    rd  (0.09999999999999998)
+                ^hier wird gerundet 
+    =0.1

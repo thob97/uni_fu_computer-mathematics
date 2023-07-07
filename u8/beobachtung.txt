@@ -1,0 +1,26 @@
+ggT_tumb(a,b):
+Theoretische untere und obere Schranken:
+min_k = 2 falls a==b==2
+max_k = 2(n-1) = 1998 falls a==1 und b==1000
+
+ggT_tumbpp(a,b):
+Theoretische untere und obere Schranken:
+min_k = 2 falls a==b
+max_k = 2(n-1) = 1998 falls a==1 und b==1000
+
+ggT_euclid(a,b):
+Theoretische untere und obere Schranken:
+min_k = 2 falls a==b
+max_k = log_2(n) = log_2(1000) < 10, da sich die größe von n = max(a,b) immer mindestens teilt.
+
+Beobachtung:
+ggT_tumb und ggT_tumbpp scheinen gleich gut / schlecht zu funktionieren.
+ggT_euclid ist wie erwartet am Besten.
+
+Interpretation hinsichtlich der theoretischen Schranken:
+Für ggT_tumb und ggT_tumbpp scheinen die Theoretischen Schranken zu stimmen.
+Es wird nie eine Konstante < min_k oder Konstante > max_k ausgegeben.
+
+Bei ggT_euclid wird jedoch hin und wieder eine Konstante > max_k ausgegeben.
+Z.B. wurde 13 als k_max angegeben, obwohl die theoretische Schranke log(n) bzw. log(1000) < 10 ist.
+Jedoch ist 13 immer noch nahe an log(n).
